@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projets</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #000;
+  color: white;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  width: 100%;
+  background: #b93737;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/* SECTION */
+.section {
+  padding: 120px 20px;
+  text-align: center;
+}
+
+/* BOUTONS */
+.projects {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project-btn {
+  background: #b93737;
+  padding: 15px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.project-btn:hover {
+  background: #922c2c;
+}
+
+/* SLIDER */
+.slider {
+  margin-top: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 600px;
+  object-fit: contain;
+}
+
+/* TITRE */
+.project-title {
+  margin-top: 20px;
+  font-size: 28px;
+  color: #b93737;
+}
+
+/* CONTROLS */
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  background: #b93737;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #922c2c;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+  <div>Hanimation creation</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="travaux.html">Travaux</a>
+  </nav>
+</header>
+
+<section class="section">
+
+<h2>Mes projets</h2>
+
+<div class="projects">
+
+  <div class="project-btn" onclick="loadProject('projet1', 4, 'A special friend for winter')">
+    Special Friend
+  </div>
+
+  <div class="project-btn" onclick="loadProject('projet3', 8, 'Swift Hallbard')">
+    Swift Hallbard
+  </div>
+
+  <div class="project-btn" onclick="loadProject('projet2', 51, 'La persévérance d’une sorcière')">
+    Persévérance Sorcière
+  </div>
+
+</div>
+</div>
+
+<h1 id="title" class="project-title"></h1>
+
+<div class="slider" id="slider"></div>
+
+<div class="controls">
+  <button onclick="prevSlide()">←</button>
+  <button onclick="nextSlide()">→</button>
+</div>
+
+</section>
+
+<script>
+let current = 0;
+let totalSlides = 0;
+
+function loadProject(folder, count, title) {
+  const slider = document.getElementById("slider");
+  const titleElement = document.getElementById("title");
+
+  slider.innerHTML = "";
+  current = 0;
+  totalSlides = count;
+
+  titleElement.textContent = title;
+
+  for (let i = 1; i <= count; i++) {
+    const slide = document.createElement("div");
+    slide.className = "slide";
+
+    const img = document.createElement("img");
+    img.src = `projet/${folder}/${i}.jpg`;
+
+    slide.appendChild(img);
+    slider.appendChild(slide);
+  }
+
+  showSlide(0);
+}
+
+function showSlide(index) {
+  const slides = document.querySelectorAll(".slide");
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index].classList.add("active");
+  current = index;
+}
+
+function nextSlide() {
+  showSlide((current + 1) % totalSlides);
+}
+
+function prevSlide() {
+  showSlide((current - 1 + totalSlides) % totalSlides);
+}
+</script>
+
+</body>
+</html>

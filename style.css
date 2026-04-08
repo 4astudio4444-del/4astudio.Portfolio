@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #072c04;
+  color: rgb(255, 227, 227);
+  transition: background 0.5s ease;
+
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  width: 100%;
+  background: #b93737;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  z-index: 1000;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* SLIDER */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto; /* centre horizontal */
+}
+
+/* SLIDES */
+.slide {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.slide.active {
+  position: relative;
+  opacity: 1;
+}
+
+/* MEDIA */
+.slide video,
+.slide img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+
+   /* GLOW ROUGE */
+  box-shadow: 
+    0 0 20px rgba(185, 55, 55, 0.6),
+    0 0 40px rgba(185, 55, 55, 0.4),
+    0 0 60px rgba(185, 55, 55, 0.2);
+    
+    margin-bottom: 40px; /* enlève le décalage qui coupe */
+
+}
+
+/* PORTRAIT STYLE */
+.portrait-slide {
+  text-align: center;
+  transform: scale(1.15); /* plus léger */
+  margin-left: 30px; /* enlève le décalage qui coupe */
+  margin-bottom: 40px; /* enlève le décalage qui coupe */
+
+}
+
+.portrait-slide video {
+  height: 650px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain; /* IMPORTANT : évite la coupe */
+  transform: scale(1.1); /* plus léger */
+  margin-top: 0; /* enlève le décalage qui coupe */
+   box-shadow: none;
+}
+
+/* TITRE */
+.slide h1 {
+  margin-top: -25px;
+  font-size: 42px;
+  color: #b93737;
+    margin-left: -30px; /* enlève le décalage qui coupe */
+
+}
+
+/* CLICKABLE */
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+
+/* CONTROLS */
+.controls {
+  position: absolute;
+  bottom: 40px;
+}
+
+button {
+  background: #b93737;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #922c2c;
+}
+
+/* SECTIONS */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* FOOTER */
+footer {
+  background: #b93737;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .slide video,
+  .slide img {
+    height: 250px;
+  }
+
+  .portrait-slide video {
+    height: 300px;
+    transform: none;
+    margin-top: 0;
+  }
+
+  .slide h1 {
+    font-size: 26px;
+  }
+
+  .controls {
+    bottom: 20px;
+  }
+}
