@@ -104,16 +104,15 @@ nav a {
   pointer-events: auto;
 }
 
-/* MEDIA */
-.slide video,
-.slide img {
+/* MEDIA commun pour vidéos */
+.slide video {
   max-width: 1100px;
   width: 90%;
   box-shadow: 0 0 20px rgba(185, 55, 55, 0.5),
               0 0 40px rgba(185, 55, 55, 0.3);
 }
 
-/* PORTRAIT */
+/* PORTRAIT - vidéo Cloudinary */
 .portrait-slide video {
   height: 650px;
   width: auto;
@@ -123,14 +122,25 @@ nav a {
   transform: translateX(20px);
 }
 
-/* DEMOREEL */
-.demoreel-slide video {
-  max-width: 1100px;
+/* DEMOREEL - conteneur et iframe Vimeo */
+.vimeo-container {
+  position: relative;
   width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
   margin-top: -80px;
 }
 
-/* TRAVAUX - MÊME STRUCTURE QUE PORTRAIT */
+.vimeo-container iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 0 20px rgba(185, 55, 55, 0.5),
+              0 0 40px rgba(185, 55, 55, 0.3);
+  border: none;
+}
+
+/* TRAVAUX - PLUS AUCUNE OMBRE SUR L'IMAGE */
 .travaux-slide {
   position: absolute;
   top: 50%;
@@ -156,8 +166,7 @@ nav a {
   width: 90%;
   height: auto;
   object-fit: contain;
-  box-shadow: 0 0 20px rgba(185, 55, 55, 0.5),
-              0 0 40px rgba(185, 55, 55, 0.3);
+  /* box-shadow SUPPRIMÉE - plus de halo rouge */
   margin-top: -80px;
   transition: transform 0.3s ease;
   cursor: pointer;
