@@ -2,14 +2,47 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 body {
   background: #072c04;
   color: rgb(255, 227, 227);
   transition: background 0.5s ease;
+  overflow: hidden;
+}
 
+/* OVERLAY pour portrait */
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+/* OVERLAY pour travaux */
+.bg-overlay-travaux {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+header, .hero, .section, footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* HEADER */
@@ -17,7 +50,6 @@ header {
   position: fixed;
   width: 100%;
   background: #b93737;
-  color: white;
   display: flex;
   justify-content: space-between;
   padding: 15px 30px;
@@ -28,151 +60,163 @@ nav a {
   margin-left: 20px;
   text-decoration: none;
   color: white;
-  font-size: 14px;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
-  position: relative;
-  overflow: hidden;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 /* SLIDER */
 .slider {
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto; /* centre horizontal */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* SLIDES */
 .slide {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   opacity: 0;
   transition: opacity 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .slide.active {
-  position: relative;
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* MEDIA */
 .slide video,
 .slide img {
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-
-   /* GLOW ROUGE */
-  box-shadow: 
-    0 0 20px rgba(185, 55, 55, 0.6),
-    0 0 40px rgba(185, 55, 55, 0.4),
-    0 0 60px rgba(185, 55, 55, 0.2);
-    
-    margin-bottom: 40px; /* enlève le décalage qui coupe */
-
+  max-width: 1100px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(185, 55, 55, 0.5),
+              0 0 40px rgba(185, 55, 55, 0.3);
 }
 
-/* PORTRAIT STYLE */
-.portrait-slide {
-  text-align: center;
-  transform: scale(1.15); /* plus léger */
-  margin-left: 30px; /* enlève le décalage qui coupe */
-  margin-bottom: 40px; /* enlève le décalage qui coupe */
-
-}
-
+/* PORTRAIT */
 .portrait-slide video {
   height: 650px;
   width: auto;
-  max-width: 100%;
-  object-fit: contain; /* IMPORTANT : évite la coupe */
-  transform: scale(1.1); /* plus léger */
-  margin-top: 0; /* enlève le décalage qui coupe */
-   box-shadow: none;
+  object-fit: contain;
+  box-shadow: none;
+  margin-top: -80px;
+  transform: translateX(20px);
 }
 
-/* TITRE */
-.slide h1 {
-  margin-top: -25px;
-  font-size: 42px;
-  color: #b93737;
-    margin-left: -30px; /* enlève le décalage qui coupe */
-
+/* DEMOREEL */
+.demoreel-slide video {
+  max-width: 1100px;
+  width: 90%;
+  margin-top: -80px;
 }
 
-/* CLICKABLE */
-.clickable {
+/* TRAVAUX - MÊME STRUCTURE QUE PORTRAIT */
+.travaux-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.travaux-slide a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.travaux-slide .travaux-image {
+  max-width: 1100px;
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 0 20px rgba(185, 55, 55, 0.5),
+              0 0 40px rgba(185, 55, 55, 0.3);
+  margin-top: -80px;
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-.clickable:hover {
+.travaux-slide .travaux-image:hover {
   transform: scale(1.02);
-  transition: 0.3s;
+}
+
+/* TITRES */
+.portrait-slide h1,
+.demoreel-slide h1,
+.travaux-slide h1 {
+  margin-top: 5px;
+  font-size: 42px;
+  color: #b93737;
+}
+
+.demoreel-slide h1 {
+  margin-top: 25px;
+}
+
+.travaux-slide h1 {
+  margin-top: 5px;
 }
 
 /* CONTROLS */
 .controls {
   position: absolute;
-  bottom: 40px;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
 button {
   background: #b93737;
   border: none;
   color: white;
-  padding: 10px 15px;
+  padding: 12px 20px;
   margin: 5px;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s ease;
 }
 
 button:hover {
-  background: #922c2c;
-}
-
-/* SECTIONS */
-.section {
-  padding: 80px 20px;
-  text-align: center;
-  max-width: 800px;
-  margin: auto;
+  transform: scale(1.05);
 }
 
 /* FOOTER */
 footer {
   background: #b93737;
-  color: white;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-  .slide video,
-  .slide img {
-    height: 250px;
-  }
-
-  .portrait-slide video {
-    height: 300px;
-    transform: none;
-    margin-top: 0;
-  }
-
-  .slide h1 {
-    font-size: 26px;
-  }
-
-  .controls {
-    bottom: 20px;
-  }
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  font-size: 14px;
 }
