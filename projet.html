@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<title>Projets</title>
+<title>Hanimation Creation - Projets personnels</title>
 
 <style>
 * {
@@ -16,8 +15,9 @@
 }
 
 body {
-  background: #000;
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
   color: white;
+  min-height: 100vh;
 }
 
 /* HEADER */
@@ -27,87 +27,235 @@ header {
   background: #b93737;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 15px 30px;
-      font-weight: 700;
+  z-index: 1000;
+}
 
+.logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
 }
 
 nav a {
-  color: white;
+  margin-left: 20px;
   text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+  opacity: 0.8;
 }
 
 /* SECTION */
 .section {
-  padding: 120px 20px;
+  padding: 120px 40px 80px;
   text-align: center;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* BOUTONS */
+.section h2 {
+  font-size: 48px;
+  color: #b93737;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.section p.subtitle {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 50px;
+}
+
+/* BOUTONS PROJETS */
 .projects {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 25px;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .project-btn {
   background: #b93737;
-  padding: 15px 25px;
-  border-radius: 10px;
+  padding: 15px 30px;
+  border-radius: 50px;
   cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .project-btn:hover {
   background: #922c2c;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(185, 55, 55, 0.4);
 }
 
-/* SLIDER */
+/* TITRE DU PROJET */
+.project-title {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 36px;
+  color: #b93737;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* SLIDER CONTAINER - PLUS GRAND */
+.slider-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
 .slider {
-  margin-top: 40px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
 }
 
 .slide {
   display: none;
+  animation: fade 0.5s ease;
 }
 
 .slide.active {
   display: block;
 }
 
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .slide img {
   width: 100%;
-  height: 600px;
+  height: 650px;
   object-fit: contain;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
 }
 
-/* TITRE */
-.project-title {
-  margin-top: 20px;
-  font-size: 28px;
-  color: #b93737;
-}
-
-/* CONTROLS */
+/* CONTROLS - PLUS GRANDS */
 .controls {
-  margin-top: 20px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-button {
+.controls button {
   background: #b93737;
   border: none;
   color: white;
-  padding: 10px 15px;
-  margin: 5px;
-  border-radius: 8px;
+  padding: 14px 30px;
+  font-size: 18px;
+  border-radius: 50px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
-button:hover {
+.controls button:hover {
   background: #922c2c;
+  transform: scale(1.05);
+}
+
+/* INDICATEUR DE SLIDE */
+.slide-counter {
+  margin-top: 25px;
+  font-size: 16px;
+  color: #ccc;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* FOOTER */
+footer {
+  background: #b93737;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .slider-container {
+    max-width: 95%;
+    padding: 20px;
+  }
+  
+  .slide img {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 100px 20px 60px;
+  }
+  
+  .section h2 {
+    font-size: 36px;
+  }
+  
+  .project-title {
+    font-size: 28px;
+  }
+  
+  .project-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .slide img {
+    height: 400px;
+  }
+  
+  .controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .slider-container {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide img {
+    height: 300px;
+  }
+  
+  .projects {
+    gap: 15px;
+  }
+  
+  .project-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  
+  .controls {
+    gap: 12px;
+  }
+  
+  .controls button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 }
 </style>
 
@@ -115,56 +263,64 @@ button:hover {
 <body>
 
 <header>
-  <div>Hanimation creation</div>
+  <div class="logo">Hanimation Creation</div>
   <nav>
     <a href="index.html">Accueil</a>
     <a href="travaux.html">Travaux</a>
+    <a href="index.html#about">À propos</a>
   </nav>
 </header>
 
 <section class="section">
 
-<h2>Mes projets</h2>
+<h2>Mes projets personnels</h2>
+<p class="subtitle">Découvrez mes créations originales</p>
 
 <div class="projects">
-
   <div class="project-btn" onclick="loadProject('projet1', 4, 'A special friend for winter')">
-    Special Friend
+    ❄️ Special Friend
   </div>
-
   <div class="project-btn" onclick="loadProject('projet3', 8, 'Swift Hallbard')">
-    Swift Hallbard
+    ⚔️ Swift Hallbard
   </div>
-
-  <div class="project-btn" onclick="loadProject('projet2', 51, 'La persévérance d’une sorcière')">
-    Persévérance Sorcière
+  <div class="project-btn" onclick="loadProject('projet2', 51, 'La persévérance d\'une sorcière')">
+    🧙‍♀️ Persévérance Sorcière
   </div>
-
-</div>
 </div>
 
-<h1 id="title" class="project-title"></h1>
-
-<div class="slider" id="slider"></div>
-
-<div class="controls">
-  <button onclick="prevSlide()">←</button>
-  <button onclick="nextSlide()">→</button>
+<div class="slider-container">
+  <h1 id="title" class="project-title"></h1>
+  
+  <div class="slider" id="slider"></div>
+  
+  <div class="controls">
+    <button onclick="prevSlide()">← Précédent</button>
+    <button onclick="nextSlide()">Suivant →</button>
+  </div>
+  
+  <div id="counter" class="slide-counter"></div>
 </div>
 
 </section>
 
+<footer>
+  © 2026 Halima Ait Amer
+</footer>
+
 <script>
 let current = 0;
 let totalSlides = 0;
+let currentFolder = "";
 
 function loadProject(folder, count, title) {
   const slider = document.getElementById("slider");
   const titleElement = document.getElementById("title");
+  const counter = document.getElementById("counter");
 
   slider.innerHTML = "";
   current = 0;
   totalSlides = count;
+  currentFolder = folder;
 
   titleElement.textContent = title;
 
@@ -174,28 +330,53 @@ function loadProject(folder, count, title) {
 
     const img = document.createElement("img");
     img.src = `projet/${folder}/${i}.jpg`;
+    img.alt = `${title} - image ${i}`;
+    
+    // Gestion des erreurs d'images manquantes
+    img.onerror = function() {
+      this.src = 'placeholder.png';
+      this.alt = 'Image non disponible';
+    };
 
     slide.appendChild(img);
     slider.appendChild(slide);
   }
 
+  updateCounter();
   showSlide(0);
 }
 
 function showSlide(index) {
   const slides = document.querySelectorAll(".slide");
+  if (slides.length === 0) return;
+  
   slides.forEach(s => s.classList.remove("active"));
   slides[index].classList.add("active");
   current = index;
+  updateCounter();
+}
+
+function updateCounter() {
+  const counter = document.getElementById("counter");
+  if (counter && totalSlides > 0) {
+    counter.textContent = `📷 Image ${current + 1} sur ${totalSlides}`;
+  }
 }
 
 function nextSlide() {
+  if (totalSlides === 0) return;
   showSlide((current + 1) % totalSlides);
 }
 
 function prevSlide() {
+  if (totalSlides === 0) return;
   showSlide((current - 1 + totalSlides) % totalSlides);
 }
+
+// Chargement par défaut : Swift Hallbard (projet3, 8 images)
+window.onload = () => {
+  loadProject('projet3', 8, 'Swift Hallbard');
+};
 </script>
 
 </body>

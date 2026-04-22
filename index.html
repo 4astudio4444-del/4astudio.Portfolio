@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <title>Hanimation Creation</title>
-  <!-- Version ajoutée pour forcer le rafraîchissement du cache -->
-<link rel="stylesheet" href="style.css"></head>
+  <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
 
@@ -41,9 +41,9 @@
       <div class="slide demoreel-slide">
         <div class="vimeo-container">
           <iframe 
-            src="https://player.vimeo.com/video/1145921699?background=1&autoplay=1&loop=1&byline=0&title=0&portrait=0"
+            src="https://player.vimeo.com/video/1145921699?autoplay=1&loop=1&byline=0&title=0&portrait=0&controls=1"
             frameborder="0" 
-            allow="autoplay; fullscreen" 
+            allow="autoplay; fullscreen; picture-in-picture" 
             allowfullscreen>
           </iframe>
         </div>
@@ -73,11 +73,20 @@
   <script>
     let current = 0;
     const slides = document.querySelectorAll(".slide");
-    const demoreel = document.getElementById("demoreel");
-    const portrait = document.getElementById("portraitVideo");
     const bgOverlay = document.querySelector(".bg-overlay");
     const bgOverlayTravaux = document.querySelector(".bg-overlay-travaux");
     const controls = document.querySelector(".controls");
+    const header = document.querySelector("header");
+    const footer = document.querySelector("footer");
+    const buttons = document.querySelectorAll("button");
+
+    function changeHeaderFooterColor(color) {
+      header.style.backgroundColor = color;
+      footer.style.backgroundColor = color;
+      buttons.forEach(btn => {
+        btn.style.backgroundColor = color;
+      });
+    }
 
     function showSlide(index) {
       slides.forEach((slide) => {
@@ -86,7 +95,6 @@
         let video = slide.querySelector("video");
         if (video) {
           video.pause();
-          video.currentTime = 0;
         }
       });
 
@@ -103,14 +111,17 @@
         document.body.style.background = "linear-gradient(to right, #ffe5d9, #ffd6c9, #ffc2b3, #ffb7a5)";
         bgOverlay.style.opacity = "1";
         bgOverlayTravaux.style.opacity = "0";
+        changeHeaderFooterColor("#b93737");
       } else if (activeSlide.classList.contains("demoreel-slide")) {
         document.body.style.background = "linear-gradient(to right, #ffe4e1, #ffd1dc, #ffc1cc)";
         bgOverlay.style.opacity = "0";
         bgOverlayTravaux.style.opacity = "0";
+        changeHeaderFooterColor("#b93737");
       } else if (activeSlide.classList.contains("travaux-slide")) {
         document.body.style.background = "linear-gradient(90deg, #ffdfdb 19%, #f0b8ff 92%)";
         bgOverlay.style.opacity = "0";
         bgOverlayTravaux.style.opacity = "1";
+        changeHeaderFooterColor("#b93737"); // Rouge pour toutes les slides
       }
 
       /* LANCEMENT VIDEO */
@@ -129,11 +140,6 @@
       showSlide((current - 1 + slides.length) % slides.length);
     }
 
-    function goProjects() {
-      window.location.href = "travaux.html";
-    }
-
-    /* IMPORTANT : lancer dès le chargement */
     window.onload = () => {
       showSlide(0);
     };
